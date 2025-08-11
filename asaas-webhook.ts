@@ -34,7 +34,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       // 1) Ensure a user exists for this email
       let userId: string | null = null;
       if (email) {
-        const { data: maybeUser } = await supabase.auth.admin.listUsers({ page: 1, perPage: 100 });
+        const { data: maybeUser } = await supabase.auth.admin.listUsers();
         const existingUser = maybeUser?.users?.find(user => user.email === email);
         if (existingUser) {
           userId = existingUser.id;
